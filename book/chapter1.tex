@@ -23,9 +23,11 @@ within this book and are not to be copied.
 \begin{code}{hello.c}
 #include <stdio.h>
 
-main ()
+int
+main (void)
 {
     printf ("Hello, World!\n");
+    return 0;
 }
 \end{code}
 
@@ -35,7 +37,7 @@ Compiler) to translate your source code into machine code. The resulting
 machine code is what can be executed by your computer.
 
 \begin{Terminal}
-cc hello.c
+cc hello.c -Wall
 \end{Terminal}
 
 If everything worked, the \file{cc} command will exit silently and a new
@@ -108,10 +110,14 @@ Lets create a new text file with the following and save it as \file{answer.c}.
 \begin{code}{answer.c}
 #include <stdio.h>
 
-main ()
+int
+main (void)
 {
     int answer = 42;
+
     printf ("The answer is %d, but what is the question?\n", answer);
+
+    return 0;
 }
 \end{code}
 
@@ -159,12 +165,15 @@ the following code into a new text file named \file{multiply.c}.
 \begin{code}{multiply.c}
 #include <stdio.h>
 
-main ()
+int
+main (void)
 {
     int a = 42;
     int b = 32;
 
     printf ("%d * %d = %d\n", a, b, a * b);
+
+    return 0;
 }
 \end{code}
 
@@ -225,12 +234,15 @@ called \file{divide.c}.
 \begin{code}{divide.c}
 #include <stdio.h>
 
+int
 main ()
 {
     int a = 221;
     int b = 13;
 
     printf ("%d / %d = %d\n", a, b, a / b);
+
+    return 0;
 }
 \end{code}
 
@@ -270,12 +282,15 @@ called \file{modulus.c}.
 \begin{code}{modulus.c}
 #include <stdio.h>
 
-main ()
+int
+main (void)
 {
     int a = 42;
     int b = 32;
 
     printf ("%d %% %d = %d\n", a, b, a % b);
+
+    return 0;
 }
 \end{code}
 
@@ -296,7 +311,8 @@ you to receive input from the terminal. It will be covered in a later chapter.
 \begin{code}{student1.c}
 #include <stdio.h>
 
-main ()
+int
+main (void)
 {
     int a;
     int b;
