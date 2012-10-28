@@ -1,0 +1,235 @@
+% GnomeUniversity - 101 - Chapter 1
+\documentclass[12pt]{article}
+\usepackage[
+    pdftitle={Introduction to C - Chapter 1},
+    pdfauthor={Christian Hergert},
+    pdfsubject={GNOME University},
+    pdfkeywords={Programming},
+    bookmarks, bookmarksopen,
+    pdfstartview=FitH,
+    colorlinks,linkcolor=blue,citecolor=blue,
+    urlcolor=red,
+]{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage{graphicx}
+\parskip 7.2pt
+
+\newcommand{\versal}[1]{\noindent{\Huge #1\kern-.10em}}
+\newcommand{\file}[1]{{\bf\ttfamily #1}}
+\newcommand{\ident}[1]{{\it\ttfamily #1}}
+\newcommand{\shell}[1]{{\it\ttfamily #1}}
+\newcommand{\python}[1]{{\it\ttfamily #1}}
+\newcommand{\ruby}[1]{{\it\ttfamily #1}}
+\newcommand{\book}[2]{{\it\ttfamily #1} by {\it #2}}
+\newcommand{\program}[1]{\it\ttfamily #1}
+
+\lstnewenvironment{code}[1]
+{
+    \lstset{language=C,
+            showstringspaces=false,
+            basicstyle=\ttfamily\small,
+            caption=#1,
+            numbers=left}
+}
+{}
+
+\lstnewenvironment{Terminal}
+{
+    \lstset{basicstyle=\ttfamily,
+            breaklines=true}
+}
+{}
+
+\title{GNOME University \\
+Introduction to C \\
+Chapter 1}
+\author{Christian Hergert \\
+    \small \texttt{christian@hergert.me}
+}
+
+\date{October 2012}
+
+\begin{document}
+\maketitle
+
+Welcome to GNOME University! This chapter will get you started down the path of
+programming in C by introducting the process of writing source code in C,
+compiling, and executing the resulting program. If you don't know what any of
+that means, that's okay, we will learn!
+
+\section{Source Code}
+
+To write programs using the C programming language, we begin with an empty text
+file. In that file, we write a sequence of characters and symbols to construct
+the program as we like. After which, we use a tool called a compiler to convert
+that source code into machine code. Machine code is a representation of your
+program in a format that your computers CPU can execute. As you might imagine,
+diferent types of CPUs have different representaions of your program. Compilers
+allow us to convert a single piece of code into machine code for multiple types
+of CPUs.
+
+\section{Hello, World}
+
+Let's start by starting up our text editor of choice. If you don't yet have a
+favorite text editor, try \verb|gedit|. It is available as part of your GNOME
+desktop installation.
+
+Copy the following listing into your text editor. Be careful and methodical as
+you go. When copying, notice the characters and keywords used.  You will become
+familiar with them. When I learn a new language, I like to guess and reason
+about what the language does before I actually learn it.
+
+\textbf{Do not copy the line numbers} to the left of the margin. They are
+provided for readability within the chapter text.
+
+\begin{code}{hello.c}
+#include <stdio.h>
+
+int
+main (int   argc,
+      char *argv[])
+{
+    printf ("Hello, World!\n");
+    return 0;
+}
+\end{code}
+
+Save the source code as a new file named \file{hello.c}. The next step in our
+process is to translate the program into code that the computer knows how to
+execute. This is called compiling. We will use the program \verb|gcc| to
+perform this task.
+
+Open a terminal and navigate to the directory where you saved \file{hello.c}.
+Compile the source code into a program using the following command.
+
+\begin{Terminal}
+gcc -Wall -Werror -o hello hello.c
+\end{Terminal}
+
+If everything worked, the \verb|gcc| command will exit silently and a new
+executable file named \file{hello} will have been placed in your current
+directory. If instead there was an error, carefully check that each character in
+\file{hello.c} matches the C code above and try again.
+
+Once you have successfully compiled \file{hello.c}, we can execute the program
+from the terminal by prefixing \verb|./| to the filename to tell the terminal
+to execute a file within the current directory.
+
+\begin{Terminal}
+./hello
+Hello, World!
+\end{Terminal}
+
+There you have it, your very first C program!
+
+\section{Anatomy}
+
+Lets now analyze the anatomy of this simple C program. The very first line,
+\verb|#include <stdio.h>| tells the compiler that we would like to use the
+\ident{stdio} library. A \textbf{library} is a set of useful, reusable
+routines. In this case, the \ident{stdio} library contains routines to
+interface with the standard input and output of your terminal\footnote{Run
+\ttfamily{man stdio} \rmfamily in your terminal for more information on the
+stdio library.}.  This allows your program to output text to the terminal and
+input text from it.
+
+The line following \verb|#include| is simply an empty line. Empty lines do
+not affect the program. In some languages, this does matter. However, C is not
+one of those languages. You may use empty lines liberally to make your code
+more readable.
+
+Next, we have \verb|main (int argc, char *argv[]))|. This tells the compiler
+that we have a function named \verb|main|. The \verb|main| function is the
+beginning of the program.  Every program has one. Every program gets two
+arguments, \verb|argc| and \verb|argv|. Arguments are declared inside of the
+pair of parenthesis \verb|()|. We will go into what these parameters mean in a
+later chapter. Do not worry if this seems mysterious, we will cover it in detail
+in a later chapter.
+
+After the line defining our function \ident{main}, we have a \verb|{|. This
+denotes the beginning of the body of the function. There is a corresponding
+\verb|}| at the end of the function. Inside of these curly braces is the crux
+of our program.
+
+\verb|printf ("Hello, World!\n")| is a function call to the \ident{printf}
+function (part of the \ident{stdio} library). You can tell it is a function call
+because the function name is followed by a parenthesized argument list.  In this
+case, our function call has a single argument, \verb|"Hello, World!\n"|.
+Information can be shared between functions in a couple ways. This way, through
+the argument list, is the most common.
+
+Our \verb|"Hello, World!\n"| argument is what we call a "string". A string is a
+sequence of characters contained within two quotation marks (\verb|"|).  At the
+end of this string you see \verb|\n|.  This means that the string should contain
+a line break at the end of it.
+
+We denote the end of a \ident{statement} in C with a semicolon (\ident{;}).
+What exactly a \ident{statement} is will be vague for now, but it will become
+clear as we continue.
+
+\section{Integers}
+
+Writing a Hello World program is always fun in a new language, but it wont
+exactly win us any awards. Lets try to print out some interesting numbers
+using our program as a base.
+
+Lets create a new text file with the following and save it as \file{answer.c}.
+
+\begin{code}{answer.c}
+#include <stdio.h>
+
+int
+main (int   argc,
+      char *argv[])
+{
+    int a = 42;
+    printf ("Answer is %d, what's the question?\n", a);
+    return 0;
+}
+\end{code}
+
+Once again, let's use \verb|gcc| to compile the program. You will get very used
+to this in no time!
+
+\begin{Terminal}
+gcc -Wall -Werror -o answer answer.c
+\end{Terminal}
+
+And again, let's run it.
+
+\begin{Terminal}
+./answer
+Answer is 42, what's the question?
+\end{Terminal}
+
+Since we have covered the anatomy of the \ident{main} function earlier in this
+chapter, lets skip to the three lines inside the body of the function. Remember
+that these are the lines inside of the curly braces \verb|{| and \verb|}|.
+
+\begin{figure}
+  \centering
+  \def\svgwidth{100pt}
+  \input{figure1.pdf_tex}
+\end{figure}
+
+Lets look at the first line, \verb|int a = 42;|. This line declares a new
+variable named \verb|a| of the type \verb|int|. Variables are always
+defined in the format \verb|type| followed by \verb|name|. \verb|int| is short
+for \verb|integer|.  You might remember that an integer is an "whole" number,
+such as 1, 2, or -20.  There are no decimal points in an integer. So if you
+tried to store the number \verb|12.5| in an integer, it would simply be 12. The
+second half of this statement, \verb|= 42| initialized the variable
+\verb|a| to the value \verb|42|.
+
+The second line should look familiar. It again is calling the \verb|printf|
+function. However, this time there are two arguments. We will cover this in
+more detail in a later chapter, but there are a few important things to take
+from this example. First, notice the comma \verb|,| used to separate the
+two arguments provided to \verb|printf|. In C, arguments are separated by
+commas. Also, note the \verb|%d| inside of the first parameter. This is a
+magic value that \verb|printf| will replace with the value of the second
+parameter.
+
+\end{document}
