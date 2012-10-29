@@ -9,5 +9,5 @@ chapter1.pdf: chapter1.tex chapter1_fig1.tex
 clean:
 	rm -f *.out *.aux *.log chapter1_fig*.tex
 
-view:
+view: chapter1.pdf
 	evince chapter1.pdf
