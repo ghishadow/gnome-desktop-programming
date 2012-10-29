@@ -14,6 +14,7 @@
 \usepackage{listings}
 \usepackage{parskip}
 \usepackage{graphicx}
+\usepackage{tikz}
 \parskip 7.2pt
 
 \newcommand{\versal}[1]{\noindent{\Huge #1\kern-.10em}}
@@ -209,9 +210,9 @@ chapter, lets skip to the three lines inside the body of the function. Remember
 that these are the lines inside of the curly braces \verb|{| and \verb|}|.
 
 \begin{figure}
-  \centering
-  \def\svgwidth{100pt}
-  \input{figure1.pdf_tex}
+	\centering
+	\input{chapter1_fig1}
+	\caption{Variable assignment}
 \end{figure}
 
 Lets look at the first line, \verb|int a = 42;|. This line declares a new
