@@ -56,7 +56,7 @@ Chapter 1}
 \maketitle
 
 Welcome to GNOME University! This chapter will get you started down the path of
-programming in C by introducting the process of writing source code in C,
+programming in C by introducing the process of writing source code in C,
 compiling, and executing the resulting program. If you don't know what any of
 that means, that's okay, we will learn!
 
@@ -67,9 +67,10 @@ file. In that file, we write a sequence of characters and symbols to construct
 the program as we like. After which, we use a tool called a compiler to convert
 that source code into machine code. Machine code is a representation of your
 program in a format that your computers CPU can execute. As you might imagine,
-diferent types of CPUs have different representaions of your program. Compilers
+different types of CPU's have different representations of your program. Compilers
 allow us to convert a single piece of code into machine code for multiple types
-of CPUs.
+of CPU's. Sometimes developers will refer to a ``toolchain'', which is a name
+for the collection of tools you need to build software for your machine.
 
 \section{Hello, World}
 
@@ -118,7 +119,7 @@ directory. If instead there was an error, carefully check that each character in
 \file{hello.c} matches the C code above and try again.
 
 Once you have successfully compiled \file{hello.c}, we can execute the program
-from the terminal by prefixing \verb|./| to the filename to tell the terminal
+from the terminal by prefixing \verb|./| to the file-name to tell the terminal
 to execute a file within the current directory.
 
 \begin{Terminal}
@@ -239,5 +240,17 @@ Also, note the \verb|%d| inside of the first parameter. This is a magic key
 that \verb|printf| will replace with the value of the second parameter.
 
 \section{Types}
+
+A type specifies what a variable can store. As you read earlier, \verb|int| can
+store whole numbers like -1, 0, or 1. There are other types that the C language
+knows about too. For example, the type \verb|double| knows how to store decimal
+numbers. Look at the example below assigning the decimal number \verb|123.45|
+to the variable named \verb|d|. Both \verb|int| and \verb|double| are examples
+of a \verb|type|. We will learn about other types as we progress through the
+chapters.
+
+\begin{Terminal}
+double d = 123.45;
+\end{Terminal}
 
 \end{document}
