@@ -7,7 +7,11 @@ pdfdata_DATA += gnome-desktop-programming.pdf
 # TEX input files
 ############################################################################
 TEX_FILES =
-TEX_FILES += tex/chapter1.tex
+TEX_FILES += tex/glib_ch1.tex
+TEX_FILES += tex/glib_ch2.tex
+TEX_FILES += tex/glib_ch3.tex
+TEX_FILES += tex/glib_ch4.tex
+TEX_FILES += tex/glib_ch5.tex
 TEX_FILES += tex/commands.tex
 TEX_FILES += tex/gnome-desktop-programming.tex
 TEX_FILES += tex/introduction.tex
