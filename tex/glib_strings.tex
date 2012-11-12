@@ -1,4 +1,43 @@
 \chapter{Strings}
+
+TODO: 
+
 \section{Building Strings}
+
+GLib comes with a structure to help build strings called \verb|GString|.
+The purpose of \verb|GString| is to allow you to continually append characters or chunks of strings until you have what you want.
+After which, you free the structure but retain the resulting string.
+This saves you from continually having to allocate and free parts of a string.
+
+\begin{code}{}
+gchar *
+build_string (void)
+{
+  GString *str
+  gint i;
+
+  str = g_string_new(NULL);
+  for (i = 99; i >= 0; i--) {
+    g_string_append_printf(str, "%d bottles of beer\n", i);
+  }
+
+  return g_string_free(str, FALSE);
+}
+\end{code}
+
+Notice line 12 and the call to \verb|g_string_free()|.
+The second parameter here denotes that the built string should not be freed with the \verb|GString| structure.
+Instead, \verb|g_string_free()| will return the string.
+This is convenient for the example shown above as we can simply return from our function providing that string.
+
+As you are building your string, \verb|GString| is managing the memory required to contain it.
+To be efficient, every time it allocates more memory it does so by growing in powers of two.
+This means that if you had 32 bytes in your string, and added another byte, it would allocate 64 bytes.
+This helps when small additions are made because it reduces the total number of memory allocations.
+
+If you do not need to format the next chunk of the string then use \verb|g_string_append()|.
+
 \section{Unicode}
+
 \section{Character Set Conversion}
+
