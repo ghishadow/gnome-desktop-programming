@@ -15,6 +15,7 @@ TEX_FILES += tex/glib_essentials.tex
 TEX_FILES += tex/glib_io.tex
 TEX_FILES += tex/glib_mainloop.tex
 TEX_FILES += tex/glib_processes.tex
+TEX_FILES += tex/glib_regex.tex
 TEX_FILES += tex/glib_strings.tex
 TEX_FILES += tex/glib_threads.tex
 TEX_FILES += tex/commands.tex
