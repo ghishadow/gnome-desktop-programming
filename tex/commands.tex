@@ -1,0 +1,51 @@
+
+\newcommand{\versal}[1]{\noindent{\Huge #1\kern-.10em}}
+\newcommand{\file}[1]{{\bf\ttfamily #1}}
+\newcommand{\ident}[1]{{\it\ttfamily #1}}
+\newcommand{\shell}[1]{{\it\ttfamily #1}}
+\newcommand{\python}[1]{{\it\ttfamily #1}}
+\newcommand{\ruby}[1]{{\it\ttfamily #1}}
+\newcommand{\book}[2]{{\it\ttfamily #1} by {\it #2}}
+\newcommand{\program}[1]{\it\ttfamily #1}
+
+\newenvironment{aside}[1]
+{
+    \begin{note}
+    \caption{\hfill\it #1}
+    \begin{quote}
+    \parindent 7.2pt
+    \parskip 5pt
+}
+{ \end{quote} \end{note} }
+
+
+\lstnewenvironment{Terminal}
+{
+    \lstset{basicstyle=\ttfamily,
+            breaklines=true}
+}
+{}
+
+\lstnewenvironment{code}[1]
+{
+    \lstset{language=C,
+            showstringspaces=false,
+            basicstyle=\ttfamily\small,
+            caption=#1,
+            numbers=left}
+}
+{}
+
+\newcommand{\rfc}[2]
+    {
+        \begin{center}
+        \ovalbox{
+            \begin{minipage}{.8\textwidth}
+            \begin{center}
+            {\bf #1:} {\it #2}
+            \end{center}
+            \end{minipage}
+        }
+        \end{center}
+    }
+
