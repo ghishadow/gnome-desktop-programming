@@ -8,8 +8,8 @@ pdfdata_DATA += gnome-desktop-programming.pdf
 ############################################################################
 TEX_FILES =
 TEX_FILES += tex/glib_ch1.tex
-TEX_FILES += tex/glib_basicdata.tex
 TEX_FILES += tex/glib_crypto.tex
+TEX_FILES += tex/glib_datastructs.tex
 TEX_FILES += tex/glib_datetime.tex
 TEX_FILES += tex/glib_essentials.tex
 TEX_FILES += tex/glib_io.tex
