@@ -39,18 +39,18 @@ g_get_current_time(&tv);
 \end{code}
 
 It is common to covert dates and times to a string for communication with external systems.
-ISO-8601 is a very commonly supported format for doing this.
-It contains the date, time, and timezone offset and looks something like \verb|2012-11-12T23:59:02-0800|.
+ISO-8601 is a commonly supported format for this.
+It contains the date, time, and timezone offset and looks like \verb|2012-11-12T23:59:02-0800|.
 GLib provides functions to translate to and from this format.
 
 \begin{code}{}
 GTimeVal tv;
-gchar *tvstr;
+gchar *str;
 
 g_get_current(&tv);
-tvstr = g_time_val_to_iso8601(tvstr);
-g_time_val_from_iso8601(&tv, tvstr);
-g_free(tvstr);
+str = g_time_val_to_iso8601(&tv);
+g_time_val_from_iso8601(&tv, str);
+g_free(str);
 \end{code}
 
 If you find working with a \verb|GTimeVal| too inconvenient you can also use the function \verb|g_get_real_time()|.
