@@ -31,6 +31,29 @@
 
 \section{Quarks}
 
+A \verb|GQuark| is a string that has been \emph{internalized}.
+That means the string will exist as long as the process is running.
+Each string is given a unique integer that identifies the string.
+
+When working with quarks, you can compare a single integer instead of an entire string to know if they are the same.
+Integer comparisons are much faster than comparing an entire string.
+For that reason, quarks are used in performance sensitive areas where it is known that the string will be part of the process forever.
+
+Take a look at ~\ref{fig:quarks} for an example mapping of \verb|GQuark| identifiers to strings.
+
+\begin{figure}[h!]
+\centering
+\begin{tabular}{c | l}
+Quark & String \\
+\hline
+1 & \verb|"name"| \\
+2 & \verb|"date"| \\
+3 & \verb|"time"| \\
+\end{tabular}
+\caption{Example GQuark mappings}
+\label{fig:quarks}
+\end{figure}
+
 \section{Handling Errors}
 
 \section{Command Line Arguments}
