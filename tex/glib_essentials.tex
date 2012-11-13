@@ -35,6 +35,55 @@ This can be done with the \verb|g_utf8_validate()| function.
 
 \section{Endianness}
 
+When writing software in C, you sometimes need to know about what the endianness of the underlying system is.
+This is particularly important when reading and writing to binary files or to sockets over the network.
+GLib provides a series of macros to help you do this.
+
+~\ref{fig:endianness} provides a list of macros for conersion based on your desired type and target endianness.
+
+\begin{figure}[h!]
+\centering
+\begin{tabular}{l | l | l | l}
+Macro & Type & From & To \\
+\hline
+\verb|GINT_FROM_BE(i)| & gint & Big Endian & Host Endian \\
+\verb|GUINT_FROM_BE(i)| & guint & Big Endian & Host Endian \\
+\verb|GLONG_FROM_BE(i)| & glong & Big Endian & Host Endian \\
+\verb|GULONG_FROM_BE(i)| & gulong & Big Endian & Host Endian \\
+\verb|GSIZE_FROM_BE(i)| & gsize & Big Endian & Host Endian \\
+\verb|GSSIZE_FROM_BE(i)| & gssize & Big Endian & Host Endian \\
+\verb|GINT_FROM_LE(i)| & gint & Little Endian & Host Endian \\
+\verb|GUINT_FROM_LE(i)| & guint & Little Endian & Host Endian \\
+\verb|GLONG_FROM_LE(i)| & glong & Little Endian & Host Endian \\
+\verb|GULONG_FROM_LE(i)| & gulong & Little Endian & Host Endian \\
+\verb|GSIZE_FROM_LE(i)| & gsize & Little Endian & Host Endian \\
+\verb|GSSIZE_FROM_LE(i)| & gssize & Little Endian & Host Endian \\
+\verb|GINT_TO_BE(i)| & gint & Host Endian & Big Endian \\
+\verb|GUINT_TO_BE(i)| & guint & Host Endian & Big Endian \\
+\verb|GLONG_TO_BE(i)| & glong & Host Endian & Big Endian \\
+\verb|GULONG_TO_BE(i)| & gulong & Host Endian & Big Endian \\
+\verb|GSIZE_TO_BE(i)| & gsize & Host Endian & Big Endian \\
+\verb|GSSIZE_TO_BE(i)| & gssize & Host Endian & Big Endian \\
+\verb|GINT_TO_LE(i)| & gint & Host Endian & Little Endian \\
+\verb|GUINT_TO_LE(i)| & guint & Host Endian & Little Endian \\
+\verb|GLONG_TO_LE(i)| & glong & Host Endian & Little Endian \\
+\verb|GULONG_TO_LE(i)| & gulong & Host Endian & Little Endian \\
+\verb|GSIZE_TO_LE(i)| & gsize & Host Endian & Little Endian \\
+\verb|GSSIZE_TO_LE(i)| & gssize & Host Endian & Little Endian \\
+\end{tabular}
+\label{fig:endianness}
+\caption{Endianness Conversion Macros}
+\end{figure}
+
+In most cases, the macros for converting numeric types will be enough.
+However, if you need to special case an implementation for one endianness, you can use the \verb|G_BYTE_ORDER| macro.
+
+\begin{code}{}
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+    /* do something little */
+#endif
+\end{code}
+
 \section{Memory}
 % g_new, malloc, free, etc
 % g_slice_new
