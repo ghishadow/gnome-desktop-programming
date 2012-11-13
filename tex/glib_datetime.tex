@@ -53,6 +53,10 @@ g_time_val_from_iso8601(&tv, tvstr);
 g_free(tvstr);
 \end{code}
 
+If you find working with a \verb|GTimeVal| too inconvenient you can also use the function \verb|g_get_real_time()|.
+It will fetch the number of seconds since the UNIX epoch as a \verb|gint64|.
+This is a much better choice if you just need to perform arithmetic on the \verb|tv_sec| field of a \verb|GTimeVal|.
+
 
 \section{GDateTime}
 
@@ -188,10 +192,3 @@ It is impervious to timezone changes and clock corrections.
 gint64 now = g_get_monotonic_time();
 \end{Terminal}
 
-
-TODO
-
-\begin{itemize}
-\item \verb|g_usleep()|
-\item \verb|g_get_real_time()|
-\end{itemize}
