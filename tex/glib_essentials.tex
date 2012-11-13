@@ -16,6 +16,16 @@
 
 \section{UTF-8}
 
+The GLib APIs assume that strings contain valid UTF-8 unless otherwise noted.
+However, there are a few variations of UTF-8.
+The version of UTF-8 supported by GLib specifically is \emph{modified} UTF-8.
+
+Modified UTF-8 uses a two bytes variation to support what would normally be a \verb|\0| byte.
+This allows for functions like \verb|strlen()| to continue working since neither of the two byte representation are \verb|\0|.
+
+It is required that when reading untrusted input from external sources that you ensure strings are valid UTF-8.
+This can be done with the \verb|g_utf8_validate()| function.
+
 \section{Logging}
 
 \section{Environment Variables}
