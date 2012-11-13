@@ -1,5 +1,72 @@
 \chapter{Dates and Times}
 
+At some point you will need to work with dates and times.
+Every operating system has its own quirks in dealing with times.
+For this reason, GLib has a couple of abstraction layers dependong on what you need to do.
+
+If what you need is to stick close to the posix \verb|struct tv|, there is \verb|GTimeVal|.
+It is also useful if you need to work on a large array of dates and times.
+\verb|GDateTime| was added recently to provide a higher-level API this is more convenient in both C and higher level languages.
+As one would guess, \verb|GTimeZone| provides information about a timezone such as its GMT offset and if it is daylight savings.
+
 \section{GTimeVal}
+
+\verb|GTimeVal| is a structure that contains two fields.
+The first is \verb|tv_sec| and it contains the number of seconds since January 1, 1970.
+The second is \verb|tv_usec| and it contains the number of microseconds past the current second.
+
+\marginpar{
+    Notice that tv\_sec and tv\_usec are glong.
+    Performing arithmetic may overflow on 32-bit architectures sooner than you think!
+}
+\begin{code}{}
+typedef struct
+{
+    glong tv_sec;
+    glong tv_usec;
+} GTimeVal;
+\end{code}
+
+To get the current time using \verb|GTimeVal|, we use the \verb|g_get_current_time()| function.
+It asks the system clock for the current local time and stores it in the structure provided.
+You are responsible for that memory.
+In this case, it is simply allocated on the stack.
+However, it could just as easily be a field in a structure of your own.
+
+\begin{code}{}
+GTimeVal tv;
+g_get_current_time(&tv);
+\end{code}
+
+It is common to covert dates and times to a string for communication with external systems.
+ISO-8601 is a very commonly supported format for doing this.
+It contains the date, time, and timezone offset and looks something like \verb|2012-11-12T23:59:02-0800|.
+GLib provides functions to translate to and from this format.
+
+\begin{code}{}
+GTimeVal tv;
+gchar *tvstr;
+
+g_get_current(&tv);
+tvstr = g_time_val_to_iso8601(tvstr);
+g_time_val_from_iso8601(&tv, tvstr);
+g_free(tvstr);
+\end{code}
+
+
 \section{GDateTime}
+
+
+
 \section{GTimeZone}
+
+
+\section{Miscellaneous}
+
+TODO
+
+\begin{itemize}
+\item \verb|g_usleep()|
+\item \verb|g_get_monotonic_time()|
+\item \verb|g_get_real_time()|
+\end{itemize}
