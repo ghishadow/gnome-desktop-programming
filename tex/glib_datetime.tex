@@ -56,9 +56,106 @@ g_free(tvstr);
 
 \section{GDateTime}
 
+\verb|GDateTime| is a structure that tracks the combination of a date, time of day, and timezone for you.
+One purpose of this structure is to simplify manipulation of dates and times.
+For example, with \verb|GTimeVal| you would need to convert to another structure such as \verb|struct tm| to manipulate days, weeks, or months accurately.
+With \verb|GDateTime| that is all handled for you.
+
+\verb|GDateTime| is \emph{referenced counted}.
+That means that you are responsible for releasing the memory back to the system when you are done with it using \verb|g_date_time_unref()|.
+
+Additionally, \verb|GDateTime| is \emph{immutable}.
+That means that every time you make a change, you receive a new instance of a \verb|GDateTime|.
+Don't forget to unref them!
+
+\begin{code}{}
+GDateTime *now;
+GDateTime *then;
+gchar *str;
+
+now = g_date_time_new_local();
+then = g_date_time_add_weeks(now, 3);
+str = g_date_time_printf(then, "%x %X");
+
+g_print("In three weeks, it will be %s\n", str);
+
+g_free(str);
+g_date_time_unref(then);
+g_date_time_unref(now);
+\end{code}
+
+You can event use \verb|GDateTime| as the key in a \verb|GHashTable|.
+Simply use the provided \verb|GHashFunc| and \verb|GEqualFunc| for \verb|GDateTime|.
+
+\begin{code}{}
+GHashTable *ht;
+GDateTime *dt;
+gchar *str;
+
+ht = g_hash_table_new_full(g_date_time_hash,
+                           g_date_time_equal,
+                           g_date_time_unref,
+                           g_free);
+dt = g_date_time_new_now_local();
+str = g_date_time_format(dt, "%x %X");
+g_hash_table_insert(ht, dt, str);
+\end{code}
+
+
+\section{GTimeSpan}
+
+\verb|GDateTime| introduces the concept of a time-span as \verb|GTimeSpan|.
+This is the number of microseconds between to dates and times.
+This is not meant for profiling how long code takes to run.
+You would want \verb|GTimer| for that.
+However, it is appropriate for determining the amount of time between two chat messages.
+
+\verb|GTimeSpan| is a \verb|gint64|.
+Therefore there is no need to free any memory when differencing two \verb|GDateTime|s.
+The following example calculates the number of days since January 1, 2000.
+
+\begin{code}{}
+GDateTime *now;
+GDateTime *jan12000;
+GTimeSpan diff;
+
+now = g_date_time_new_now_utc();
+jan12000 = g_date_time_new_utc(2000, 1, 1, 0, 0, 0);
+diff = g_date_time_difference(jan12000, now);
+
+g_print("%"G_GINT64_FORMAT" days since Jan 1, 2000.\n",
+        jan12000 / G_TIME_SPAN_DAY);
+
+g_date_time_unref(now);
+g_date_time_unref(jan12000);
+\end{code}
 
 
 \section{GTimeZone}
+
+
+\section{GTimer}
+
+\verb|GTimer| is a structure used for calculating how much wall clock time has elapsed.
+It is typically used to profile how long something takes to run.
+For example, if you want to now if a particular optimization is faster, \verb|GTimer| is a very simple way to achieve that.
+
+There is no need to start a timer, it is started as soon as you create it.
+Simply stop it when you are finished.
+If you want to re-use a timer, you can call \verb|g_timer_reset()| to restart it.
+
+\begin{code}{}
+GTimer *timer;
+gdouble elapsed;
+
+timer = g_timer_new();
+test_1();
+g_timer_stop(timer);
+elapsed = g_timer_elapsed(timer, NULL);
+g_print("%lf seconds elapsed.\n", elapsed);
+g_timer_destroy(timer);
+
+\end{code}
 
 
 \section{Miscellaneous}
