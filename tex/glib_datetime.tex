@@ -158,12 +158,40 @@ g_timer_destroy(timer);
 \end{code}
 
 
-\section{Miscellaneous}
+\section{Monotonic Time}
+
+Developers often use the \emph{real-time} clock when what they really want is monotonic time.
+The real-time clock is what you get from \verb|g_get_current_time()|.
+It is the time as humans think of it with dates, times, leap seconds and such.
+To illustrate why monotonic time is what we often want, think about the following problem.
+
+If we want to show a dialog in 30 minutes to tell the user to stop using their computer and take a break, how might we go about doing this?
+The simple solution is to occasionally check to see what time it is.
+If the time period has passed then show the dialog.
+
+What happens if the user crosses a timezone boundry?
+Or the clock has been updated because it was incorrect?
+You risk the chance of not reaching your 30 minute timeout.
+
+\marginpar{
+clock\_gettime() used with CLOCK\_MONOTONIC is what this uses on Linux.
+Some systems such as Mac OS X do not support it.
+Therefore this can be handy when writing for multiple platforms.
+}
+
+The monotonic clock is designed precisely for this purpose.
+Instead of giving you a time that is relative to humans, it gives you a time that is relative to the computer.
+Often times, this is implemented as the number of seconds since the computer booted.
+It is impervious to timezone changes and clock corrections.
+
+\begin{Terminal}
+gint64 now = g_get_monotonic_time();
+\end{Terminal}
+
 
 TODO
 
 \begin{itemize}
 \item \verb|g_usleep()|
-\item \verb|g_get_monotonic_time()|
 \item \verb|g_get_real_time()|
 \end{itemize}
