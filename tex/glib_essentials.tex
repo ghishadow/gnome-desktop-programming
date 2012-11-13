@@ -39,7 +39,7 @@ When writing software in C, you sometimes need to know about what the endianness
 This is particularly important when reading and writing to binary files or to sockets over the network.
 GLib provides a series of macros to help you do this.
 
-~\ref{fig:endianness} provides a list of macros for conersion based on your desired type and target endianness.
+Figure ~\ref{fig:endianness} provides a list of macros for conersion based on your desired type and target endianness.
 
 \begin{figure}[h!]
 \centering
@@ -71,8 +71,8 @@ Macro & Type & From & To \\
 \verb|GSIZE_TO_LE(i)| & gsize & Host Endian & Little Endian \\
 \verb|GSSIZE_TO_LE(i)| & gssize & Host Endian & Little Endian \\
 \end{tabular}
-\label{fig:endianness}
 \caption{Endianness Conversion Macros}
+\label{fig:endianness}
 \end{figure}
 
 In most cases, the macros for converting numeric types will be enough.
