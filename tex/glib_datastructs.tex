@@ -1,29 +1,113 @@
 \chapter{Data Structures}
 
 \section{Arrays}
+
+TODO: GArray
+
 \subsection{Pointer Arrays}
+
+TODO: GPtrArray
+
 \subsection{Byte Arrays}
+
+TODO: GByteArray
+
 \subsection{Sorting}
+
+TODO: sorting with
+
+\begin{enumerate}
+\item \verb|g_array_sort()|
+\item \verb|g_ptr_array_sort()|
+\item \verb|g_byte_array_sort()|
+\end{enumerate}
+
 \subsection{Searching}
+
+TODO: Writing your own binary search.
 
 \section{Lists}
+
 \subsection{Singly Linked Lists}
+
+\begin{code}{}
+struct _GList
+{
+    gpointer data;
+    GList *next;
+};
+\end{code}
+
 \subsection{Doubly Linked Lists}
-\subsection{Sorting}
+
+\begin{code}{}
+struct _GList
+{
+    gpointer data;
+    GList *next;
+    GList *prev;
+};
+\end{code}
+
 \subsection{Searching}
 
+\begin{enumerate}
+\item \verb|g_list_find|
+\item \verb|g_list_first|
+\item \verb|g_list_last|
+\end{enumerate}
+
+\subsection{Sorting}
+
+TODO: \verb|g_list_sort|
+
 \section{Queues}
-\subsection{Blocking Queues}
+
+TODO: What is a queue?
+
 \subsection{Non-blocking Queues}
 
+\begin{enumerate}
+\item \verb|GQueue|, a double-ended queue.
+\end{enumerate}
+
+\subsection{Blocking Queues}
+
+\begin{enumerate}
+\item \verb|GAsyncQueue|, a double-ended queue.
+\end{enumerate}
+
 \section{HashTables}
+
+TODO: GHashTable
+
+\subsection{Insertion}
+
+TODO: \verb|g_hash_table_insert|
+
+\subsection{Lookup}
+
+TODO: running time, hash/equal funcs, etc
+
+\subsection{Removal}
+
 \subsection{Iterating}
+
+TODO: GHashTableIter
 
 \section{Balanced Trees}
 \subsection{Searching}
 
+TODO: Worst case running time
+
 \section{N-ary Trees}
+
+TODO: tree leaves with more than one child
+
 \subsection{Searching}
 
+TODO: Worst case running time
+
 \section{Scalable Lists}
-% GSequence
+
+TODO: GSequence
