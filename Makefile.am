@@ -36,8 +36,8 @@ TEX_FILES += tex/preamble.tex
 # Gnome Desktop Programming PDF
 ############################################################################
 gnome-desktop-programming.pdf: $(TEX_FILES)
-	TEXINPUTS=$(srcdir)/tex: $(PDFLATEX) gnome-desktop-programming.tex
-	TEXINPUTS=$(srcdir)/tex: $(PDFLATEX) gnome-desktop-programming.tex
+	TEXINPUTS=$(srcdir)/tex: $(pdflatex) gnome-desktop-programming.tex
+	TEXINPUTS=$(srcdir)/tex: $(pdflatex) gnome-desktop-programming.tex
 
 
 CLEANFILES = *.aux *.tex *.pdf *.out *.log
