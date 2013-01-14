@@ -1,5 +1,8 @@
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+
+
 pdfdatadir = $(datadir)/gnome-desktop-programming
-pdfdata_DATA :=
+pdfdata_DATA =
 pdfdata_DATA += gnome-desktop-programming.pdf
 
 

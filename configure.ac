@@ -4,21 +4,22 @@ dnl ************************************************************************
 AC_PREREQ([2.69])
 AC_INIT([gnome-desktop-programming],[0.1.0])
 AM_INIT_AUTOMAKE([1.11.1 no-dist-gzip dist-xz])
+AC_CONFIG_MACRO_DIR([m4])
 
 
 dnl ************************************************************************
-dnl Check for required programs.
+dnl Check for latex dependencies.
 dnl ************************************************************************
-AC_PATH_PROG([PDFLATEX], [pdflatex], [])
-if test "$PDFLATEX" = ""; then
-	AC_MSG_ERROR([pdflatex could not be found, please install texlive-latex.])
-fi
+AC_LATEX_CLASS_ARTICLE
+AC_LATEX_PACKAGE_AMSMATH
+AC_LATEX_PACKAGE_FONTENC
+AC_PROG_MF
+AC_PROG_PDFLATEX
 
-AC_PATH_PROG([MF2PT1], [mf2pt1], [])
-if test "$MF2PT1" = ""; then
-	AC_MSG_ERROR([mf2pt1 could not be found, please install texlive-mf2pt1.])
-fi
 
+dnl ************************************************************************
+dnl Check for other required programs.
+dnl ************************************************************************
 AC_PATH_PROG([DIA], [dia], [])
 if test "$DIA" = ""; then
 	AC_MSG_ERROR([dia could not be found, please install dia.])
@@ -44,5 +45,5 @@ echo "  Prefix .................: ${prefix}"
 echo ""
 echo "  Programs"
 echo "    dia ..................: ${DIA}"
-echo "    pdflatex .............: ${PDFLATEX}"
+echo "    pdflatex .............: ${pdflatex}"
 echo ""
