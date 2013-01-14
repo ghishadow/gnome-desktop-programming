@@ -14,6 +14,11 @@ if test "$PDFLATEX" = ""; then
 	AC_MSG_ERROR([pdflatex could not be found, please install texlive-latex.])
 fi
 
+AC_PATH_PROG([MF2PT1], [mf2pt1], [])
+if test "$MF2PT1" = ""; then
+	AC_MSG_ERROR([mf2pt1 could not be found, please install texlive-mf2pt1.])
+fi
+
 AC_PATH_PROG([DIA], [dia], [])
 if test "$DIA" = ""; then
 	AC_MSG_ERROR([dia could not be found, please install dia.])
