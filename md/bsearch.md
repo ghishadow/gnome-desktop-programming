@@ -19,10 +19,13 @@ g_ptr_array_bsearch (GPtrArray     *array,
                      GCompareFunc   compare_func,
                      gconstpointer  key)
 {
+    gpointer *ret;
+
     g_return_if_fail(array);
     g_return_if_fail(compare_func);
 
-    return bsearch(key, array->pdata, array->len, sizeof(gpointer), compare_func);
+    ret = bsearch(key, array->pdata, array->len, sizeof(gpointer), compare_func);
+    return ret ? *ret : NULL;
 }
 ```
 
