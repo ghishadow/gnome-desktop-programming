@@ -44,6 +44,5 @@ It helps speed up allocations in most cases (however, I'd like to see some compa
 # Do use __g\_new__, __g\_malloc__ or variants when
 
  * You are allocating an unknown amount of space such as space for a string.
- * Your allocation is less than the size of a pointer.
 
 _If you have any corrections or suggestions please let me know and I will update accordingly._
