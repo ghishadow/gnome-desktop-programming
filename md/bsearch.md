@@ -29,5 +29,5 @@ g_ptr_array_bsearch (GPtrArray     *array,
 }
 ```
 
-Keep in mind that your compare func will get the key as the first parameter and
-the array member as the second.
+Keep in mind that your compare func will get the key as the first parameter and a pointer to the array member, not the actual pointer as the second.
+This should be familiar to those who have used GHashTable.
