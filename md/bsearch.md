@@ -8,7 +8,7 @@ There is a pretty simple way to do this yourself, using the __bsearch()__ functi
 __bsearch()__ is a generic binary search implementation that is part of libc and C89.
 It should be available everywhere GLib is.
 
-Let's implement it or GPtrArray.
+Let's implement it for GPtrArray.
 
 ```c
 #include <glib.h>
