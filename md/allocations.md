@@ -32,7 +32,7 @@ They are prone to fragmentation over time since lots of small allocations can ma
  * You can use space within a structure most of the time and spill into a heap allocation if it grows too large.
  * The allocation is not better served by a SLAB style heap allocator such as GSlice.
 
-Additionally, you might be asking yourself, should I use _g\_slice\_new_ or _g\_new_?
+Additionally, you might be asking yourself, should I use __g\_slice\_new__ or __g\_new__?
 Note that g\_slice\_* is a SLAB style allocator within GLib and provides automatic memory caching based on structure size.
 It helps speed up allocations in most cases (however, I'd like to see some comparisons against tcmalloc).
 
@@ -41,9 +41,9 @@ It helps speed up allocations in most cases (however, I'd like to see some compa
  * The size of your allocation will always be the same.
  * You expect to make many instances of your structure.
 
-# Do use _g\_new_, _g\_malloc_ or variants when
+# Do use __g\_new__, __g\_malloc__ or variants when
 
  * You are allocating an unknown amount of space such as space for a string.
  * Your allocation is less than the size of a pointer.
 
-/If you have any corrections or suggestions please let me know and I will update accordingly./
+_If you have any corrections or suggestions please let me know and I will update accordingly._
