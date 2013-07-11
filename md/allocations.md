@@ -40,6 +40,7 @@ It helps speed up allocations in most cases (however, I'd like to see some compa
 
  * The size of your allocation will always be the same.
  * You expect to make many instances of your structure.
+ * You can control the release of the memory (through a wrapper \*\_free function or directly with g\_slice\_free).
 
 # Do use __g\_new__, __g\_malloc__ or variants when
 
