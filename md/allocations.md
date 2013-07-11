@@ -2,7 +2,7 @@
 
 In C, allocations come in two forms.
 By using some amount of your threads stack, or by using a heap allocator such as malloc() and free().
-Sometimes it is hard to know which to use, so I'd like to set out some guidelines to help you make the right choice.
+Sometimes it is hard to know which to use, so I\'d like to set out some guidelines to help you make the right choice.
 
 First, lets compare what stack and heap allocations do.
 
@@ -26,7 +26,24 @@ They are prone to fragmentation over time since lots of small allocations can ma
 
 # Do use stack allocations when
 
+ * Thes heap allocation suggestions don\'t apply.
  * The structure is small.
  * The amount of space is limited in size and can safely be placed on the stack without overflowing.
  * You can use space within a structure most of the time and spill into a heap allocation if it grows too large.
+ * The allocation is not better served by a SLAB style heap allocator such as GSlice.
 
+Additionally, you might be asking yourself, should I use _g\_slice\_new_ or _g\_new_?
+Note that g\_slice\_* is a SLAB style allocator within GLib and provides automatic memory caching based on structure size.
+It helps speed up allocations in most cases (however, I\'d like to see some comparisons against tcmalloc).
+
+# Do use g\_slice\_new or variants when
+
+ * The size of your allocation will always be the same.
+ * You expect to make many instances of your structure.
+
+# Do use _g\_new_, _g\_malloc_ or variants when
+
+ * You are allocating an unknown amount of space such as space for a string.
+ * Your allocation is less than the size of a pointer.
+
+/If you have any corrections or suggestions please let me know and I will update accordingly./
